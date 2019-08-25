@@ -1,0 +1,31 @@
+.Button{
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    -webkit-user-select: none;
+    display: inline-block;
+    background: linear-gradient(to left, #bdc3c7, #8c7ae6);
+    padding: 2px;
+    border-radius: 5px;
+    margin:5px;
+    cursor: pointer;
+}
+.Module{
+    background: #fff;
+    color: black;
+    padding: 5px 15px;
+    border-radius: 3px;
+    transition: 0.5s ease-out 0.1s;
+}
+.Module:hover{
+    background: rgba(46, 191, 238, 0.1);
+}
+.Button:active{
+    background: #5f2c82;
+}
+.Button.disabled:active{
+    background: rgba(181, 14, 0, 0.93);
+}
+.Button.disabled{
+    background: rgba(255, 3, 23, 0.93);
+}

@@ -1,0 +1,21 @@
+.ResultQuiz{
+    justify-content: center;
+    padding-top: 50px;
+    display: flex;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.ResultQuizWrapper{
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 80%;
+    max-width: 600px;
+    padding: 10px;
+}
+
+.ResultQuizWrapper h1{
+    color: black;
+}
+

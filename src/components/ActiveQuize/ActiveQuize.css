@@ -1,0 +1,23 @@
+.ActiveQuiz{
+    color: #fff;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin: 0 10px;
+    padding: 20px;
+}
+
+.Question{
+    display: flex;
+    justify-content: space-between;
+}
+.Question{
+    cursor: default;
+}
+li {
+    list-style-type: none;
+    cursor: pointer;
+}
+li:hover{
+    color: #bdc3c7;
+}

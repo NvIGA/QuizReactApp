@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 // import Layout from "../../hoc/layout/Layout";
-import classes from  './About.css'
+import classes from './About.css'
 
 class About extends Component{
     render() {
