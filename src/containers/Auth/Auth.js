@@ -3,10 +3,11 @@ import classes from './Auth.css'
 import Button from "../../components/UI/Button/Button";
 import Input from "../../components/UI/Input/Input";
 import is from 'is_js'
-import axios from 'axios'
+import {connect} from "react-redux";
+import {auth} from "../../store/actions/authActions";
 
 
-export default class Auth extends Component {
+class Auth extends Component {
 
     state = {
         touchedBtn: false,
@@ -108,40 +109,24 @@ export default class Auth extends Component {
         );
     };
 
-    loginHandler = async () => {
-        const authData = {
-            email: this.state.formControls.email.value,
-            password: this.state.formControls.password.value,
-            returnSecureToken: true
-        };
-        try {
-            const response = await axios.post(
-                "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBJdmRSnB5Dxyzzhp8G-o7ukifwmH7sGsM",
-                authData);
-            console.log(response);
-        } catch (e) {
-            console.log(e)
-        }
+    loginHandler =  () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            true
+        );
 
         this.setState({
             touchedBtn: true
         })
     };
 
-    registerHandler = async () => {
-        const authData = {
-            email: this.state.formControls.email.value,
-            password: this.state.formControls.password.value,
-            returnSecureToken: true
-        };
-        try {
-            const response = await axios.post(
-                "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJdmRSnB5Dxyzzhp8G-o7ukifwmH7sGsM",
-                authData);
-            console.log(response);
-        } catch (e) {
-            console.log(e)
-        }
+    registerHandler =  () => {
+        this.props.auth(
+            this.state.formControls.email.value,
+            this.state.formControls.password.value,
+            false
+        );
 
         this.setState({
             touchedBtn: true
@@ -189,3 +174,18 @@ export default class Auth extends Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return{
+        state: state
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return{
+        auth: (email, password, isLogin) => dispatch(auth(email, password, isLogin))
+    }
+
+}
+
+export default connect (mapStateToProps, mapDispatchToProps)(Auth)

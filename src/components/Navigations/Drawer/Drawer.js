@@ -3,14 +3,8 @@ import classes from './Drawer.css'
 import Backdrop from "../../UI/Backdrop/Backdrop";
 import {NavLink} from "react-router-dom";
 
-const links = [
-    {to: '/', label: '', exact:true} ,
-    {to: '/auth', label: 'Auth', exact:false} ,
-    {to: '/quiz-list', label: 'Quiz list', exact:true} ,
-    {to: '/quiz-create', label: 'Create Quiz', exact:true} ,
-    {to: '/about', label: 'About us', exact:true}
 
-];
+
 
 let listStyles = [
     classes.Drawer
@@ -24,7 +18,7 @@ class Drawer extends Component {
 
     };
 
-    renderLinks() {
+    renderLinks(links) {
         return links.map((link, index) => {
             return (
                 <li key={index} onClick={ () => {}}>
@@ -43,15 +37,27 @@ class Drawer extends Component {
 
     render() {
 
+        const links = [
+            {to: '/quiz-list', label: 'Quiz list', exact:true} ,
+            {to: '/about', label: 'About us', exact:true}
+        ];
+
+        if(this.props.isAuthenticated){
+            links.unshift( {to: '/quiz-create', label: 'Create Quiz', exact:true})
+            links.unshift( {to: '/logout', label: 'Logout', exact:false});
+        }else{
+            links.unshift({to: '/auth', label: 'Auth', exact:false})
+        }
         !this.props.isOpen
             ? listStyles.push(classes.closes)
             : listStyles = [classes.Drawer];
+
 
         return (
             <React.Fragment>
                 <nav className={listStyles.join(' ')}>
                     <ul>
-                        {this.renderLinks()}
+                        {this.renderLinks(links)}
 
                     </ul>
                 </nav>
